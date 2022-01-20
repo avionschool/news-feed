@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import Headline from "./Headline";
 import NewsFeedItem from "./NewsFeedItem";
 
 const NewsFeed = () =>{
@@ -24,16 +25,24 @@ const NewsFeed = () =>{
               })
           .catch(error => setError(error));
 
-          console.log(news.results);
+          //console.log(news.results);
     } 
 
     return(
-        <div className="newsfeed">
-              { news.results != undefined ? news.results.map((item, index) => 
+        <div className="newsfeed">     
+            {news.results != undefined ? <Headline></Headline> : <p>Loading</p>}       
+            {news.results != undefined ? news.results.map((item, index) => {
+                            return (
                                 <NewsFeedItem key={index} 
                                               uri={item.uri}
+                                              url={item.url}
+                                              section={item.section}
+                                              title={item.title}
                                               media={item.media}
-                                />) : <p>Loading</p>   } 
+
+                                />
+                                )}) : <p>Loading</p>
+            } 
         </div>
     );
 }
