@@ -1,12 +1,13 @@
 html {
-  font-size: 100%;
-  box-sizing: border-box;
+  font-size: 100%;  
 }
 
 *,
 *::before,
 *::after {  
-  box-sizing: inherit;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -16,27 +17,68 @@ body {
   font-weight: 300;
   line-height: 1.3;
   overflow-x: hidden;
+  height: 100vh;
+  /* background: rgb(16,32,189);
+  background: linear-gradient(-45deg, rgba(16,32,189,1) 0%, rgba(56,16,156,1) 65%, rgba(42,201,232,1) 100%); */
+  background-image: url("./../public/3386851.jpg");
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.App{
+  position: relative;
+  display: block;
+}
+
+nav{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  margin-bottom: 20px;    
 }
 
 h1{
+  font-size: 4em;
   font-family: 'Cormorant SC', serif;
+  color: white;
+  text-align: center;
+  
 }
 
 .newsfeed{
   position: relative;
   display: flex;
   min-height: 100vh;
-  align-items: center;
-  justify-content: center;
+  align-items: center; /* horizontal */
+  /* justify-content: center; */ /* vertical */
   padding: 16px;
   flex-wrap: wrap;
   flex-direction: column;  
 }
 
+.newsfeed-sections{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+}
+
+.newsfeed-sections span{
+   cursor: pointer;
+}
+
+.newsfeed-sections span:not(:last-child){
+  margin-right: 10px;    
+}
+
 .news-feed-item{
   position: relative;
   width: 600px;
-  height: 200px;
+  height: auto;
   padding: 10px;
   background-color: gainsboro;
   margin-bottom: 10px;
@@ -65,6 +107,9 @@ h1{
   left: auto;
 }
 
+.news-feed-item-title{
+  margin-bottom: 10px;
+}
 
 .news-feed-item-content{
   display: flex;
@@ -82,11 +127,27 @@ h1{
   margin-bottom: 13px;  
 }
 
-.news-feed-item-abstract span{
+.news-feed-item-footer{
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  width: 100%;
+}
+
+.news-feed-item-subtitle{
   margin-top: 10px;
   font-size: smaller;
 }
 
+.news-feed-item-section{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-top: 10px;
+  font-size: smaller;
+  
+}
 .news-feed-item:hover{
-    opacity: 0.7;
+    /* opacity: 0.7; */
+    filter: brightness(120%);
 }
