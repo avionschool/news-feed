@@ -68,11 +68,31 @@ h1{
 }
 
 .newsfeed-sections span{
+  position: relative;
    cursor: pointer;
+   font-size: 0.875rem ;
+   color: gray;
+   transition: color 200ms ease-in-out;
+}
+
+.newsfeed-sections span::after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    display: block;
+    height: 5px;
+    background-color: white;
+    left: 0;
+    right: 0;
+    bottom: -15px;
+}
+
+.newsfeed-sections span:hover{
+  color: white;
 }
 
 .newsfeed-sections span:not(:last-child){
-  margin-right: 10px;    
+  margin-right: 32px;    
 }
 
 .news-feed-item{
@@ -85,6 +105,8 @@ h1{
   overflow: hidden;
   border-radius: 10px; 
   cursor: pointer;
+  transition: all 0.5s;
+  animation: 0.5s ease-out 0s 1 slideInFromLeft;
 }
 
 .news-feed-item:before,.news-feed-item:after{
@@ -148,6 +170,14 @@ h1{
   
 }
 .news-feed-item:hover{
-    /* opacity: 0.7; */
-    filter: brightness(120%);
+  filter: brightness(120%);
+}
+
+@keyframes slideInFromLeft {
+  0% {
+      transform: translateX(-100%);
+  }
+  100% {
+      transform: translateX(0);
+  }
 }

@@ -8,7 +8,9 @@ const NewsFeedItem = (props) => {
             <div className="news-feed-item">
                 <a href={props.url} target="_blank"><h5 className="news-feed-item-title">{props.title}</h5></a>
                 <div className="news-feed-item-content">
-                    <div><a href={props.url} target="_blank"><img src={props.media[0]["media-metadata"][0].url}/></a></div>
+                    <div><a href={props.url} target="_blank">
+                        <img src={props.media[0]["media-metadata"][0].url}/></a>
+                    </div>
                     <div className="news-feed-item-abstract">
                         <p>{props.abstract}</p>                        
                     </div>                    
