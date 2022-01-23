@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from "react";
 import Sections from "./Sections";
 import NewsFeedItem from "./NewsFeedItem";
+import News from "../News";
 
 const NewsFeed = () =>{
-    const API_KEY = "d7wW7yS7JGSVjxpJiJ2ZDOdqlP0zReac";
     const [news, setNews] = useState({});
     const [error, setError] = useState("");
     const [isFinished, setFinished] = useState(false);
@@ -14,36 +14,33 @@ const NewsFeed = () =>{
     },[selectedSection]); 
 
     const getNews = async () =>{
-        await fetch("https://api.nytimes.com/svc/mostpopular/v2/emailed/7.json?api-key=" + API_KEY,{
-            method: "GET",
-            headers: {
-                "access-control-allow-origin" : "*",
-                "Content-type": "application/json; charset=UTF-8"
-            }})
-          .then(response => response.json())
-          .then(data => {
-              setNews(data);
-              setFinished(true);
-              })
-          .catch(error => setError(error));          
-    } 
+            const newsObj = new News();
+            await newsObj.api()
+              .then(data => {
+                setNews(data);
+                setFinished(true);
+                })
+              .catch(error => setError(error));   
+        } 
 
     const getSections = () =>{
+        //Get unique sections; Always be sure that you're not mapping an object-> it's for arrays only
         var sections = [];
-        sections = [...new Set(news.results.map(item => item.section))]//Get unique sections; Always be sure that you're not mapping an object-> it's for arrays only
+        sections = [...new Set(news.results.map(item => item.section))]
         return sections;
     }
 
     const setSelectedSectionNow = (sectionName) => {
+        console.log("set selected section");
             setSelectedSection(sectionName);
     }
 
     const getNewsFeedItems =  () => {
-        //should return the result of the Array.map so the component will display
+        //should return the result of the Array.map so the component will display since it was called on the render
         return news.results.map((item, index) =>
                                 {
-                                   if(item.section == selectedSection || selectedSection == "All") 
-                                   return (
+                                    if(item.section == selectedSection || selectedSection == "All") 
+                                    return (
                                             <NewsFeedItem key={index} 
                                                         uri={item.uri}
                                                         url={item.url}
@@ -54,13 +51,9 @@ const NewsFeed = () =>{
                                                         byline={item.byline}
 
                                             />
-                                        )
-                                    
+                                    )
                                 }
-                         );
-
-        
-        
+                            );
     }
 
    return(
@@ -69,7 +62,7 @@ const NewsFeed = () =>{
                 {news.results !== undefined ? <Sections sections={getSections()} selectSection={setSelectedSectionNow}/> : <p>{error}</p>}
             </div>
             <div id="newsFeedItems" className="newsfeed-items">
-                {news.results !== undefined ? getNewsFeedItems("All") : <p>{error}</p>}                    
+                {news.results !== undefined ? getNewsFeedItems() : <p>{error}</p>}                    
             </div>            
         </div>
     );

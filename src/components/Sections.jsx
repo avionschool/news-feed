@@ -4,10 +4,9 @@ const Sections = (props) =>{
 
     return(
         <React.Fragment>
-            <span className="section-menu" onClick={props.selectSection.bind(null,"All")}>All</span>
+            <span onClick={props.selectSection.bind(null,"All")}>All</span>
             {props.sections.map((item, index) => <span key={index} onClick={props.selectSection.bind(null,item)}>{item}</span>)}
-        </React.Fragment>
-        
+        </React.Fragment>        
     );
 }
 

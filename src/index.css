@@ -33,12 +33,22 @@ body {
   display: block;
 }
 
-nav{
-  position: relative;
+.weather{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+}
+
+nav{  
   display: flex;
+  justify-content: center;
   flex-direction: row;
-  height: 50px;
   margin-bottom: 20px;    
+  top: 0;
+  height: fit-content;
+  z-index: 2;
 }
 
 h1{
@@ -64,15 +74,22 @@ h1{
   position: relative;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   margin-bottom: 20px;
+  top: 0;
+  justify-content: center;
 }
 
 .newsfeed-sections span{
-  position: relative;
+   position: relative;
    cursor: pointer;
    font-size: 0.875rem ;
    color: gray;
-   transition: color 200ms ease-in-out;
+   transition: color 200ms ease-in-out;   
+}
+
+.newsfeed-sections span:hover{
+  color: white;
 }
 
 .newsfeed-sections span::after{
@@ -81,23 +98,28 @@ h1{
     width: 100%;
     display: block;
     height: 5px;
-    background-color: white;
     left: 0;
     right: 0;
-    bottom: -15px;
+    bottom: -15px;       
+    opacity: 0;
+    transition: opacity 300ms ease-in-out;
 }
 
-.newsfeed-sections span:hover{
-  color: white;
+.newsfeed-sections span:hover::after{
+  background-color: white;
+  opacity: 1;
 }
 
 .newsfeed-sections span:not(:last-child){
   margin-right: 32px;    
 }
 
+.newsfeed-items{/* container of newsfeed items */
+  position: relative;
+}
 .news-feed-item{
   position: relative;
-  width: 600px;
+  max-width: 600px;
   height: auto;
   padding: 10px;
   background-color: gainsboro;

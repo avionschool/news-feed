@@ -3,7 +3,7 @@ import './../index.css';
 
 const NewsFeedItem = (props) => {
     const showNewsDetails = props =>{
-        if (props.media.length != 0 && props.media.length != undefined){ //change this with `hasOwnProperty` or `in` next time; check why those results to true always
+        if (props.media.length != 0 && props.media.length != undefined){ 
             return (
             <div className="news-feed-item">
                 <a href={props.url} target="_blank"><h5 className="news-feed-item-title">{props.title}</h5></a>
@@ -22,8 +22,8 @@ const NewsFeedItem = (props) => {
                 
             </div>)
         }
-        else 
-            return <span>No Image</span> 
+       else 
+            return null
         
     }
 

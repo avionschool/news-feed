@@ -5,8 +5,8 @@ function App() {
   
   return (
     <div className="App">
-           <h1>The New York Times</h1>        
-          <NewsFeed/>
+        <nav><h1>The New York Times</h1></nav>      
+        <NewsFeed/>
     </div>      
     );
 }

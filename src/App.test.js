@@ -1,8 +1,9 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import App from './App';
 import NewsFeed from './components/NewsFeed';
 import NewsFeedItem from './components/NewsFeedItem';
-import getNews from './modules/fetchNews'; 
+import Sections from './components/Sections';
+import News from './News';
 
 const media = [{type: "image",
                   subtype: "photo",
@@ -21,6 +22,29 @@ test('renders a newsfeed item with static data', () => {
                          abstract="Why are so many of us behaving so badly?"
                          byline="By David Brooks" />);
     //screen.debug();
-    expect(screen.getByText("Opinion")).toBeInTheDocument();
+    expect(screen.getByText("America Is Falling Apart at the Seams")).toBeInTheDocument();
     
 });
+
+it("API testing", async() =>{
+      const response = new News();
+      
+      var data = await response.api();
+      expect(data.num_results).toEqual(20);
+})
+
+test('Check if sections were rendered', async() =>{
+  const response = new News();
+  var data = await response.api();
+
+  var sections = [];
+  sections = [...new Set(data.results.map(item => item.section))];//Get unique sections
+
+  const dummyEvent = (sectionName) =>{}
+  render(<Sections selectSection={dummyEvent} sections={sections}/>)
+
+  const sectionMenu = screen.getByText("All");
+  fireEvent.click(sectionMenu);
+  screen.debug();
+
+})
