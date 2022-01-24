@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import Sections from "./Sections";
 import NewsFeedItem from "./NewsFeedItem";
 import News from "../News";
+import { getNewsArticles } from "../utils/api";
 
 const NewsFeed = () =>{
     const [news, setNews] = useState({});
@@ -14,8 +15,8 @@ const NewsFeed = () =>{
     },[selectedSection]); 
 
     const getNews = async () =>{
-            const newsObj = new News();
-            await newsObj.api()
+            //const newsObj = new News();
+            await getNewsArticles() //newsObj.api()
               .then(data => {
                 setNews(data);
                 setFinished(true);
@@ -31,8 +32,7 @@ const NewsFeed = () =>{
     }
 
     const setSelectedSectionNow = (sectionName) => {
-        console.log("set selected section");
-            setSelectedSection(sectionName);
+        setSelectedSection(sectionName);
     }
 
     const getNewsFeedItems =  () => {

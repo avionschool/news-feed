@@ -1,9 +1,44 @@
+import {rest} from "msw";
+import {setupServer} from "msw/node";
 import { fireEvent, render, screen } from '@testing-library/react';
-import App from './App';
-import NewsFeed from './components/NewsFeed';
 import NewsFeedItem from './components/NewsFeedItem';
 import Sections from './components/Sections';
 import News from './News';
+import App from './App';
+import {getNewsArticles} from './utils/api';
+
+/* const server = setupServer(
+  rest.get("https://api.nytimes.com/svc/mostpopular/v2/emailed/",(req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({"num_results": 20}));
+  })
+);
+
+beforeAll(() => server.listen());
+afterAll(() => server.close());
+afterEach(() => server.resetHandlers()); */
+
+jest.mock("./utils/api", () => {
+  return {
+    getNewsArticles: jest.fn().mockImplementation(() => {
+      return { num_results : 20 };
+    }),
+  };
+});
+
+/* test("API testing", async() =>{
+  const response = new News();
+  
+  var data = await response.api();
+  expect(data.num_results).toEqual(20);
+});  */
+
+test("API testing",async () =>{
+  var data = await getNewsArticles();
+  console.log(data);
+  expect(data).toEqual(20);
+});
 
 const media = [{type: "image",
                   subtype: "photo",
@@ -26,14 +61,7 @@ test('renders a newsfeed item with static data', () => {
     
 });
 
-it("API testing", async() =>{
-      const response = new News();
-      
-      var data = await response.api();
-      expect(data.num_results).toEqual(20);
-})
-
-test('Check if sections were rendered', async() =>{
+/* test('Check if sections were rendered', async() =>{
   const response = new News();
   var data = await response.api();
 
@@ -45,6 +73,6 @@ test('Check if sections were rendered', async() =>{
 
   const sectionMenu = screen.getByText("All");
   fireEvent.click(sectionMenu);
-  screen.debug();
+  //screen.debug();
 
-})
+}) */
