@@ -7,6 +7,5 @@ beforeEach(() => {
 
 it("convers correctly", async () => {
     fetch.mockResponseOnce(JSON.stringify(mockData));
-    const response = await getNewsArticles();
-    console.log(response);
+    const response = await getNewsArticles();    
 })

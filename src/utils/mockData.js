@@ -18,7 +18,6 @@ const mockData = {"status":"OK",
                                           "format":"mediumThreeByTwo210","height":140,"width":210},
                                         {"url":"https://static01.nyt.com/images/2022/02/13/well/13well-n95mask-guide1/13well-n95mask-guide1-mediumThreeByTwo440.jpg",
                                           "format":"mediumThreeByTwo440","height":293,"width":440}]}
-                    ],
-            "eta_id":0}]};
+                    ],}]};
 
 export {mockData};

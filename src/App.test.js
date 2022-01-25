@@ -5,24 +5,26 @@ import News from './News';
 import App from './App';
 import {getNewsArticles} from './utils/api';
 import {mockData} from "./utils/mockData.js"
+import NewsFeed from './components/NewsFeed';
 
-/* beforeEach(() => {
+beforeEach(() => {
   fetch.resetMocks();
-}); */
+});
 
-/* jest.mock("./utils/api", () => {
+jest.mock("./utils/api", () => {
   return {
       getNewsArticles: jest.fn().mockImplementation(() => {
       return mockData;
     }),
   };
-}); */
+});
 
-/* test("renders an a tag for `All`", async () => {
-  const {findByText} = render(<App/>);
-  const element = await findByText("All");
-  expect(element).toBeInTheDocument();    
-}) */
+test("renders an a tag for `All`", async () => {
+  const {findByText} = render(<NewsFeed/>);
+ screen.debug();
+  /*  const element = await findByText("All");
+  expect(element).toBeInTheDocument();     */
+})
 
 /* test("API testing",async () =>{ //get data from mock file - OK
   fetch.mockResponseOnce(JSON.stringify(mockData));
@@ -30,12 +32,13 @@ import {mockData} from "./utils/mockData.js"
   expect(data.num_results).toEqual(20);
 }); */
 
-test("API testing",async () =>{ //get data from actual api w/o mock - OK
-  var data = await getNewsArticles();
+/* test("API testing",async () =>{ //get data from actual api w/o mock
+  var news = new News()
+  var data = await news.api();
   expect(data.num_results).toEqual(20);
-});
+}); */
 
-const media = [{type: "image",
+/* const media = [{type: "image",
                   subtype: "photo",
                   "media-metadata" : [{url: "https://static01.nyt.com/images/2022/01/13/opinion/13brooks1/13brooks1-thumbStandard.jpg"},
                                         {url: "https://static01.nyt.com/images/2022/01/13/opinion/13brooks1/13brooks1-thumbStandard.jpg"}
@@ -54,7 +57,7 @@ test('renders a newsfeed item with static data', () => {
     //screen.debug();
     expect(screen.getByText("America Is Falling Apart at the Seams")).toBeInTheDocument();
     
-});
+}); */
 
 /* test('Check if sections were rendered', async() =>{
   const response = new News();
