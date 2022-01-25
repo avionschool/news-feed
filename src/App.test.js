@@ -6,11 +6,11 @@ import App from './App';
 import {getNewsArticles} from './utils/api';
 import {mockData} from "./utils/mockData.js"
 
-beforeEach(() => {
+/* beforeEach(() => {
   fetch.resetMocks();
-});
+}); */
 
-/* jest.mock("../utils/api", () => {
+/* jest.mock("./utils/api", () => {
   return {
       getNewsArticles: jest.fn().mockImplementation(() => {
       return mockData;
@@ -18,23 +18,22 @@ beforeEach(() => {
   };
 }); */
 
-test("API testing",async () =>{
-  fetch.mockResponseOnce(JSON.stringify(mockData));
-  var data = await getNewsArticles();
-  expect(data.num_results).toEqual(20);
-});
-
-/* 
-test("API testing",async () =>{
-  var data = await getNewsArticles();
-  expect(data.num_results).toEqual(20);
-}); */
-
-/*  test("renders an a tag for `All`", async () => {
+/* test("renders an a tag for `All`", async () => {
   const {findByText} = render(<App/>);
   const element = await findByText("All");
   expect(element).toBeInTheDocument();    
 }) */
+
+/* test("API testing",async () =>{ //get data from mock file - OK
+  fetch.mockResponseOnce(JSON.stringify(mockData));
+  var data = await getNewsArticles();
+  expect(data.num_results).toEqual(20);
+}); */
+
+test("API testing",async () =>{ //get data from actual api w/o mock - OK
+  var data = await getNewsArticles();
+  expect(data.num_results).toEqual(20);
+});
 
 const media = [{type: "image",
                   subtype: "photo",

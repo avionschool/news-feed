@@ -1,6 +1,6 @@
 const mockData = {"status":"OK",
 "copyright":"Copyright (c) 2022 The New York Times Company.  All Rights Reserved.",
-"num_results":19,
+"num_results":20,
 "results":[{"uri":"nyt://article/2ff562c3-5739-585d-9ad3-faef214d742d",
             "url":"https://www.nytimes.com/article/covid-masks.html",
             "section":"Well",
