@@ -5,7 +5,11 @@ beforeEach(() => {
     fetch.resetMocks();
 });
 
-it("convers correctly", async () => {
+it("fetches mock data instead from the actual api", async () => {
     fetch.mockResponseOnce(JSON.stringify(mockData));
-    const response = await getNewsArticles();    
+    
+    const data = await getNewsArticles();
+    expect(data).toEqual(mockData);
+    expect(data.num_results).toEqual(1);
+    expect(data.results.length).toEqual(1);
 })

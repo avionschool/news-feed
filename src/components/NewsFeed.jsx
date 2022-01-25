@@ -3,6 +3,7 @@ import Sections from "./Sections";
 import NewsFeedItem from "./NewsFeedItem";
 import News from "../News";
 import { getNewsArticles } from "../utils/api";
+import { mockData } from "../utils/mockData";
 
 const NewsFeed = () =>{
     const [news, setNews] = useState({});
@@ -15,14 +16,15 @@ const NewsFeed = () =>{
     },[selectedSection]); 
 
     const getNews = async () =>{
-            //const newsObj = new News();
-            await getNewsArticles() //newsObj.api()
+            await getNewsArticles()
               .then(data => {
                 setNews(data);
                 setFinished(true);
                 })
-              .catch(error => setError(error));   
-        } 
+              .catch(error => {
+                setError(error);               
+              });   
+    }
 
     const getSections = () =>{
         //Get unique sections; Always be sure that you're not mapping an object-> it's for arrays only
